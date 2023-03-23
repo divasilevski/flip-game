@@ -1,11 +1,9 @@
-import { useState, useContext } from "react";
-import { StatContext } from "../context/stat/statContext";
+import { useState } from "react";
+
 import PlayGround from "../components/PlayGround";
 import PlayPanel from "../components/PlayPanel";
 
 export default function Play() {
-  const statistic = useContext(StatContext);
-
   const [game, changeGame] = useState({
     timer: new Date(),
     content: [
