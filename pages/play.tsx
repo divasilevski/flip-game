@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Head from "next/head";
 
 import PlayGround from "../components/PlayGround";
 import PlayPanel from "../components/PlayPanel";
@@ -40,15 +41,21 @@ export default function Play() {
   };
 
   return (
-    <div className="page center">
-      <div className="fit">
-        <PlayPanel game={game}></PlayPanel>
-        <PlayGround
-          game={game}
-          onReload={reloadGame}
-          onEnd={endGame}
-        ></PlayGround>
+    <>
+      <Head>
+        <title>Play</title>
+      </Head>
+
+      <div className="page center">
+        <div className="fit">
+          <PlayPanel game={game}></PlayPanel>
+          <PlayGround
+            game={game}
+            onReload={reloadGame}
+            onEnd={endGame}
+          ></PlayGround>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
