@@ -6,7 +6,7 @@ const PlayPanel = ({ game }) => {
   const [clock, setClock] = useState(0);
 
   const tick = () => {
-    setClock(new Date(new Date() - game.timer).getSeconds() - 1);
+    setClock(new Date(Number(new Date()) - game.timer).getSeconds() - 1);
   };
 
   useEffect(() => {

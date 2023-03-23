@@ -1,8 +1,8 @@
 import styles from "../styles/PlayGround.module.scss";
 import React, { useState, useEffect } from "react";
 
-import Card from "../components/Card";
-import ReloadModal from "../components/ReloadModal";
+import Card from "./Card";
+import ReloadModal from "./ReloadModal";
 import { shuffle } from "../shared/utils";
 
 function openedCards(cards) {

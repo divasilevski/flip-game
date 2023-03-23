@@ -35,7 +35,7 @@ export default function Play() {
   };
 
   const endGame = () => {
-    const timeInSec = (new Date() - game.timer) / 1000;
+    const timeInSec = (Number(new Date()) - Number(game.timer)) / 1000;
     console.log(timeInSec);
   };
 
