@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-export default function Statistic() {
+export default function Records() {
   return (
-    <div>
-      <h1>Statistic page</h1>
+    <div className="page center">
+      <h1>Records page</h1>
       <Link href="/">Назад</Link>
       <pre></pre>
     </div>

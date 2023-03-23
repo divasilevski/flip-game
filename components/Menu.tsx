@@ -11,7 +11,7 @@ const Menu = () => {
         <Link href="/play">play</Link>
       </div>
       <div className={styles.menu__item}>
-        <Link href="/statistic">statistic</Link>
+        <Link href="/records">records</Link>
       </div>
     </div>
   );
