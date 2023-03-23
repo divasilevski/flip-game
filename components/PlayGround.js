@@ -11,6 +11,7 @@ function openedCards(cards) {
 
 const PlayGround = (props) => {
   const [cards, changeCards] = useState(props.game.content);
+  const [isWinner, setIsWinner] = useState(false);
 
   useEffect(() => {
     changeCards(() => {
@@ -22,7 +23,11 @@ const PlayGround = (props) => {
   }, [props.game]);
 
   const toggleShow = (index) => {
-    changeCards((state) => {
+    changeCards((oldState) => {
+      const state = [...oldState];
+
+      state[index].isShow = true;
+
       const opened = openedCards(state);
 
       if (opened.length === 2) {
@@ -34,14 +39,20 @@ const PlayGround = (props) => {
         state.forEach((card) => (card.isShow = false));
       }
 
-      state[index].isShow = true;
+      if (cards.every((card) => card.content === "Opened")) {
+        props.onEnd();
+        setIsWinner(true);
+      }
+
       return [...state];
     });
   };
 
   return (
     <>
+      {isWinner && "You are win!"}
       <ReloadModal onClick={props.onReload}></ReloadModal>
+
       <div className={styles.playground}>
         {cards.map((card, index) => (
           <Card
