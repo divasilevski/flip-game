@@ -1,9 +1,9 @@
-import styles from "../styles/PlayGround.module.scss";
 import React, { useState, useEffect } from "react";
+import styles from "styles/PlayGround.module.scss";
 
 import Card from "./Card";
 import ReloadModal from "./ReloadModal";
-import { shuffle } from "../shared/utils";
+import { shuffle } from "utils/shuffle";
 
 function openedCards(cards) {
   return cards.filter((card) => card.isShow);

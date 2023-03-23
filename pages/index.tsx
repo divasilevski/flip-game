@@ -1,16 +1,14 @@
 import Head from "next/head";
 import Menu from "../components/Menu";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Head>
         <title>Menu</title>
       </Head>
 
-      <div className="page center">
-        <Menu></Menu>
-      </div>
+      <Menu></Menu>
     </>
   );
 }
