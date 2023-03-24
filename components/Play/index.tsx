@@ -1,60 +1,24 @@
 import React, { useState } from "react";
-
-import PlayPanel from "./PlayPanel";
-import PlayGround from "./PlayGround";
-import Lobby from "./Lobby";
 import { Preset } from "types/game.types";
+import Lobby from "./Lobby";
+import Game from "./Game";
 
 const Play = () => {
+  const [preset, setPreset] = useState<Preset>(null);
+
   const startGame = (preset: Preset) => {
-    console.log(preset);
+    setPreset(preset);
   };
-  // const [game, changeGame] = useState({
-  // timer: new Date(),
-  // content: [
-  // { id: 1, isShow: false, content: "Locked" },
-  // { id: 4, isShow: false, content: "Locked" },
-  // { id: 3, isShow: false, content: "Locked" },
-  // { id: 2, isShow: false, content: "Locked" },
-  // { id: 1, isShow: false, content: "Locked" },
-  // { id: 2, isShow: false, content: "Locked" },
-  // { id: 3, isShow: false, content: "Locked" },
-  // { id: 4, isShow: false, content: "Locked" },
-  //   ],
-  // });
 
-  // const reloadGame = () => {
-  //   changeGame({
-  //     timer: new Date(),
-  //     content: [
-  //       { id: 1, isShow: false, content: "Locked" },
-  //       { id: 4, isShow: false, content: "Locked" },
-  //       { id: 3, isShow: false, content: "Locked" },
-  //       { id: 2, isShow: false, content: "Locked" },
-  //       { id: 1, isShow: false, content: "Locked" },
-  //       { id: 2, isShow: false, content: "Locked" },
-  //       { id: 3, isShow: false, content: "Locked" },
-  //       { id: 4, isShow: false, content: "Locked" },
-  //     ],
-  //   });
-  // };
+  const endGame = () => {
+    setPreset(null);
+  };
 
-  // const endGame = () => {
-  //   const timeInSec = (Number(new Date()) - Number(game.timer)) / 1000;
-  //   console.log(timeInSec);
-  // };
+  if (preset) {
+    return <Game preset={preset} onEnd={endGame} />;
+  }
 
-  return (
-    <div className="fit">
-      <Lobby onSelect={startGame} />
-      {/* <PlayPanel game={game}></PlayPanel>
-      <PlayGround
-        game={game}
-        onReload={reloadGame}
-        onEnd={endGame}
-      ></PlayGround> */}
-    </div>
-  );
+  return <Lobby onSelect={startGame} />;
 };
 
 export default Play;

@@ -25,7 +25,7 @@ const Lobby = ({ onSelect }: LobbyProps) => {
       </div>
 
       <Link className={styles.lobbyBack} href="/">
-        &#8249;&nbsp;Back
+        Back
       </Link>
     </div>
   );
