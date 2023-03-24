@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "styles/Timer.module.scss";
 
 interface TimerProps {
-  startTime: number;
+  isGoing: boolean;
 }
 
-const Timer = ({ startTime }: TimerProps) => {
+const Timer = ({ isGoing }: TimerProps) => {
   const [time, setTime] = useState(0);
 
   const tick = () => {
@@ -13,9 +13,11 @@ const Timer = ({ startTime }: TimerProps) => {
   };
 
   useEffect(() => {
-    const timer = setInterval(() => tick(), 1000);
-    return clearInterval.bind(this, timer);
-  }, [startTime]);
+    if (isGoing) {
+      const timer = setInterval(() => tick(), 1000);
+      return clearInterval.bind(this, timer);
+    }
+  }, [isGoing]);
 
   return (
     <div className={styles.timer}>

@@ -1,0 +1,39 @@
+.modal {
+  z-index: 1000;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset: 0;
+  background: #0006;
+
+  .modalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 280px;
+    margin: 40px;
+    padding: 40px;
+    border-radius: 10px;
+    background: white;
+
+    h2 {
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+
+    span {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    .modalBack {
+      cursor: pointer;
+      user-select: none;
+      font-size: 20px;
+      text-transform: uppercase;
+      margin-top: 40px;
+    }
+  }
+}

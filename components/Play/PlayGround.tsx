@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "styles/PlayGround.module.scss";
+import { Preset } from "types/game.types";
+import { shuffle } from "utils/shuffle";
 
 import Card from "./Card";
 
@@ -7,12 +9,36 @@ function openedCards(cards) {
   return cards.filter((card) => card.isShow);
 }
 
-const PlayGround = (props) => {
-  const [cards, changeCards] = useState(props.game.content);
+const createGame = (preset: Preset) => {
+  const count = preset.rows * preset.cols;
+  const pureArray = Array.from(Array(count));
+  const cards = pureArray.map((_, index) => ({
+    id: Math.floor(index / 2) + 1,
+    isShow: false,
+    content: "Locked",
+  }));
+
+  return {
+    timer: Date.now(),
+    content: shuffle(cards).map((el, index) => {
+      el.index = index;
+      return el;
+    }),
+  };
+};
+
+interface PlayGroundProps {
+  preset: Preset;
+  onWin: () => void;
+}
+
+const PlayGround = ({ preset, onWin }: PlayGroundProps) => {
+  const [game, changeGame] = useState(createGame(preset));
+  const [cards, changeCards] = useState(game.content);
   const [isWinner, setIsWinner] = useState(false);
 
   const toggleShow = (index) => {
-    changeCards((oldState) => {
+    changeCards((oldState: any) => {
       const state = [...oldState];
 
       const opened = openedCards(state);
@@ -28,8 +54,8 @@ const PlayGround = (props) => {
 
       state[index].isShow = true;
 
-      if (cards.every((card) => card.content === "Opened")) {
-        props.onEnd();
+      if (cards.every((card: any) => card.content === "Opened")) {
+        onWin();
         setIsWinner(true);
       }
 
@@ -40,7 +66,7 @@ const PlayGround = (props) => {
   return (
     <>
       {isWinner && "You are win!"}
-
+      <button onClick={onWin}></button>
       <div className={styles.playground}>
         {cards.map((card, index) => (
           <Card

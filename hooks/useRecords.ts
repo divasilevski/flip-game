@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { Record } from "types/record.types";
 import { keys } from "config/keys";
-import { merge } from "utils/merge";
 
 interface UseRecordsParams {
   onlyCreate?: boolean;
@@ -17,8 +16,15 @@ export function useRecords(params?: UseRecordsParams) {
 
   const createRecord = useCallback((newRecord: Record) => {
     const oldRecords = getRecordsFromStorage();
-    const records = merge<Record>(oldRecords, newRecord, "title");
-    localStorage.setItem(keys.RECORDS_STORAGE_KEY, JSON.stringify(records));
+    const index = oldRecords.findIndex((el) => el.title === newRecord.title);
+
+    if (index < 0) {
+      oldRecords.push(newRecord);
+    } else if (oldRecords[index].time > newRecord.time) {
+      oldRecords[index] = newRecord;
+    }
+
+    localStorage.setItem(keys.RECORDS_STORAGE_KEY, JSON.stringify(oldRecords));
   }, []);
 
   useEffect(() => {

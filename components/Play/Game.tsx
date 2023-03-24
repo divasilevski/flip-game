@@ -1,28 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "styles/Game.module.scss";
-import { shuffle } from "utils/shuffle";
 import { Preset } from "types/game.types";
+import { useRecords } from "hooks/useRecords";
 
 import PlayGround from "./PlayGround";
+import Modal from "./Modal";
 import Timer from "./Timer";
-
-const createGame = (preset: Preset) => {
-  const count = preset.rows * preset.cols;
-  const pureArray = Array.from(Array(count));
-  const cards = pureArray.map((_, index) => ({
-    id: Math.floor(index / 2) + 1,
-    isShow: false,
-    content: "Locked",
-  }));
-
-  return {
-    timer: Date.now(),
-    content: shuffle(cards).map((el, index) => {
-      el.index = index;
-      return el;
-    }),
-  };
-};
 
 interface GameProps {
   preset: Preset;
@@ -30,13 +13,24 @@ interface GameProps {
 }
 
 const Game = ({ preset, onEnd }: GameProps) => {
-  const [game, changeGame] = useState(createGame(preset));
+  const timer = useRef(Date.now()).current;
+  const { createRecord } = useRecords({ onlyCreate: true });
+  const [time, setTime] = useState(null);
+
+  const gameWin = () => {
+    const time = (Date.now() - timer) / 1000;
+
+    setTime(time);
+    createRecord({ title: preset.title, time });
+  };
 
   return (
     <div className={styles.game}>
-      <Timer startTime={game.timer} />
+      {time && <Modal time={time} onEnd={onEnd} />}
 
-      <PlayGround game={game} onEnd={onEnd}></PlayGround>
+      <Timer isGoing={!time} />
+
+      <PlayGround preset={preset} onWin={gameWin} />
 
       <span className={styles.gameBack} onClick={onEnd}>
         Back
