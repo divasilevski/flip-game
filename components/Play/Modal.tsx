@@ -10,7 +10,7 @@ const Modal = ({ time, onEnd }: ModalProps) => {
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
-        <h2>Winner</h2>
+        <h2>Game Win</h2>
         <span>{time}s</span>
 
         <span className={styles.modalBack} onClick={onEnd}>

@@ -3,7 +3,7 @@ import styles from "styles/Game.module.scss";
 import { Preset } from "types/game.types";
 import { useRecords } from "hooks/useRecords";
 
-import PlayGround from "./PlayGround";
+import Playground from "./Playground";
 import Modal from "./Modal";
 import Timer from "./Timer";
 
@@ -30,7 +30,7 @@ const Game = ({ preset, onEnd }: GameProps) => {
 
       <Timer isGoing={!time} />
 
-      <PlayGround preset={preset} onWin={gameWin} />
+      <Playground preset={preset} onWin={gameWin} />
 
       <span className={styles.gameBack} onClick={onEnd}>
         Back

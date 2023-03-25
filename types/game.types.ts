@@ -3,3 +3,10 @@ export interface Preset {
   rows: number;
   cols: number;
 }
+
+export interface GameCard {
+  uid: string;
+  imageId: string;
+  isOpen: boolean;
+  isResolve: boolean;
+}
