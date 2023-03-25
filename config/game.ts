@@ -1,3 +1,5 @@
+// rows + cols <= imageIds.length
+
 export const lobbyItems = [
   { title: "2x2", rows: 2, cols: 2 },
   { title: "2x3", rows: 2, cols: 3 },
@@ -5,3 +7,5 @@ export const lobbyItems = [
   { title: "3x4", rows: 3, cols: 4 },
   { title: "4x4", rows: 4, cols: 4 },
 ];
+
+export const imageIds = ["00", "01", "07", "09", "10", "11", "12", "19"];

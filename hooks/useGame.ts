@@ -1,11 +1,12 @@
 import { useCallback, useState } from "react";
 import { GameCard, Preset } from "types/game.types";
+import { imageIds } from "config/game";
 import { shuffle } from "utils/shuffle";
 
 function createCard(_, index: number) {
   return {
     uid: String(index),
-    imageId: String(Math.floor(index / 2) + 1),
+    imageId: imageIds[Math.floor(index / 2)],
     isOpen: false,
     isResolve: false,
   };

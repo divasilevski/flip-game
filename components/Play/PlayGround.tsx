@@ -15,7 +15,12 @@ const Playground = ({ preset, onWin }: PlaygroundProps) => {
   return (
     <div className={styles.playground} data-columns={preset.cols}>
       {cards.map((card) => (
-        <Card key={card.uid} card={card} onClick={() => toggleCard(card.uid)} />
+        <Card
+          key={card.uid}
+          imageId={card.imageId}
+          isFlip={card.isOpen || card.isResolve}
+          onClick={() => toggleCard(card.uid)}
+        />
       ))}
     </div>
   );
