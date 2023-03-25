@@ -13,7 +13,7 @@ const Playground = ({ preset, onWin }: PlaygroundProps) => {
   const { cards, toggleCard } = useGame({ preset, onWin });
 
   return (
-    <div className={styles.playground}>
+    <div className={styles.playground} data-columns={preset.cols}>
       {cards.map((card) => (
         <Card key={card.uid} card={card} onClick={() => toggleCard(card.uid)} />
       ))}

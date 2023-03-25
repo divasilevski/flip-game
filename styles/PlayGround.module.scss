@@ -1,5 +1,16 @@
 .playground {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
+  grid-gap: 20px;
+
+  &[data-columns="2"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &[data-columns="3"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &[data-columns="4"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
